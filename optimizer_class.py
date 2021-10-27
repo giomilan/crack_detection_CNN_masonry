@@ -52,7 +52,7 @@ class Optimizer:
         sys.path.append(self.args["main"])
 
         if self.args['opt'] == 'Adam':
-            from keras.optimizers import Adam
+            from tensorflow.keras.optimizers import Adam
             opt = Adam(self.INIT_LR)
             
         elif self.args['opt'] == 'SGD':

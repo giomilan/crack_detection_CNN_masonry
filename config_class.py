@@ -58,7 +58,7 @@ class Config:
         # Batch size
         self.BS = 4
         # Number of epochs to train the model
-        self.epochs = 10
+        self.epochs = 1
         # Initial learning rate
         self.INIT_LR = 0.0005
         

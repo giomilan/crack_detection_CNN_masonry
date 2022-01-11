@@ -50,7 +50,7 @@ class Config:
         self.working_folder = working_folder
         
         # Define the mode that will be used when running the code
-        self.mode = 'train' #'build_data' # 'train', 'evaluate' or 'build_data'
+        self.mode = 'evaluate' #'build_data' # 'train', 'evaluate' or 'build_data'
         # Info that will be used as prefix of any output files
         self.info = 'crack_detection'
         # Dimensions of the images that will be fed to the network
@@ -265,10 +265,10 @@ class Config:
         elif self.mode == 'evaluate':
             
             # Define the counter suitably in order to read the correct JSON file etc.
-            self.args['counter'] = 413480
+            self.args['counter'] = 393368
             # Define the file with the pretrained weights or the model with weights that will be used to evaluate model
             # e.g. 'crack detection_1_epoch_7_F1_score_dil_0.762.h5'
-            self.args['pretrained_filename'] = 'crack_detection_413480_epoch_1_F1_score_dil_0.114.h5'
+            self.args['pretrained_filename'] = 'crack_detection_393368_epoch_10_F1_score_dil_0.768.h5'
             # Define the subfolder where predictions will be stored
             self.args['predictions_subfolder'] = '{}{}/'.format(self.args['predictions'], self.args['pretrained_filename'])
             # Define whether to dilate ground truth mask for the calculation of Precision metric

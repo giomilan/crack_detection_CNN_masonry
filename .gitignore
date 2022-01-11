@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 #Folder
 output/
+img_to_evaluate/prediction/*.png
 # C extensions
 *.so
 

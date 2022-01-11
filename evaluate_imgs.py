@@ -42,10 +42,10 @@ Your feedback is welcome. Feel free to reach out to explore any options for coll
 
 import os
 
-os.add_dll_directory("C:\\Users\\filippo.giunta\\Documents\\cuda\\bin\\")
+#os.add_dll_directory("C:\\Users\\giovanni.milan\\Documents\\cuda\\bin\\")
 folder = {}
 # Use this to easily run the code in different directories/devices
-folder['initial'] = 'C:/Users/filippo.giunta/OneDrive - Arup/Documents/masonry_crack/'
+folder['initial'] = 'C:\\Users\\Giovanni.Milan\\Documents\\'
 # The path where the repository is stored
 folder['main'] = folder['initial'] + 'crack_detection_CNN_masonry/'
 
@@ -80,7 +80,7 @@ from subroutines.HDF5 import HDF5DatasetGeneratorMask
 #%%
   
 
-HDF5_file = "C:\\Users\\filippo.giunta\\OneDrive - Arup\\Documents\\masonry_crack\\crack_detection_CNN_masonry\\img_to_evaluate\\val.hdf5"  
+HDF5_file = "C:\\Users\\giovanni.milan\\Documents\\crack_detection_CNN_masonry\\img_to_evaluate\\val.hdf5"  
 if mode == 'evaluate':
 
     # load pretrained model/weights

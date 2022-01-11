@@ -44,7 +44,7 @@ import os
 
 folder = {}
 # Use this to easily run the code in different directories/devices
-folder['initial'] = 'C:/Users/filippo.giunta/OneDrive - Arup/Documents/masonry_crack/'
+folder['initial'] = 'C:/Users/giovanni.milan/Documents/'
 # The path where the repository is stored
 folder['main'] = folder['initial'] + 'crack_detection_CNN_masonry/'
 

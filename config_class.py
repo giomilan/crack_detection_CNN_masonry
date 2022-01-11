@@ -58,7 +58,7 @@ class Config:
         # Batch size
         self.BS = 4
         # Number of epochs to train the model
-        self.epochs = 1
+        self.epochs = 10
         # Initial learning rate
         self.INIT_LR = 0.0005
         
@@ -265,10 +265,10 @@ class Config:
         elif self.mode == 'evaluate':
             
             # Define the counter suitably in order to read the correct JSON file etc.
-            self.args['counter'] = 1
+            self.args['counter'] = 413480
             # Define the file with the pretrained weights or the model with weights that will be used to evaluate model
             # e.g. 'crack detection_1_epoch_7_F1_score_dil_0.762.h5'
-            self.args['pretrained_filename'] = 'crack_detection_6_epoch_9_F1_score_dil_0.809.h5'
+            self.args['pretrained_filename'] = 'crack_detection_413480_epoch_1_F1_score_dil_0.114.h5'
             # Define the subfolder where predictions will be stored
             self.args['predictions_subfolder'] = '{}{}/'.format(self.args['predictions'], self.args['pretrained_filename'])
             # Define whether to dilate ground truth mask for the calculation of Precision metric

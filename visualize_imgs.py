@@ -46,8 +46,8 @@ import h5py
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable 
 
-HDF5_file = "C:\\Users\\filippo.giunta\\OneDrive - Arup\\Documents\\masonry_crack\\crack_detection_CNN_masonry\\img_to_evaluate\\val.hdf5"  
-prediction_folder="C:\\Users\\filippo.giunta\\OneDrive - Arup\\Documents\\masonry_crack\\crack_detection_CNN_masonry\\img_to_evaluate\\prediction\\"
+HDF5_file = "C:\\Users\\giovanni.milan\\Documents\\crack_detection_CNN_masonry\\img_to_evaluate\\val.hdf5"  
+prediction_folder="C:\\Users\\giovanni.milan\\Documents\\crack_detection_CNN_masonry\\img_to_evaluate\\prediction\\"
 def visualize_imgs(args, predictions, threshold=0.5):
     """
     threshold: use this value to binarize the ground trough mask

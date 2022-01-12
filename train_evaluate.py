@@ -44,10 +44,14 @@ import os
 
 #os.add_dll_directory("C:\\Users\\filippo.giunta\\Documents\\cuda\\bin\\")
 folder = {}
+"""
 # Use this to easily run the code in different directories/devices
 folder['initial'] = 'C:/Users/giovanni.milan/Documents/'
 # The path where the repository is stored
 folder['main'] = folder['initial'] + 'crack_detection_CNN_masonry/'
+"""
+
+folder['main'] = ''
 
 # if folder['main'] == '', then the current working directory will be used
 if folder['main'] == '':
@@ -152,11 +156,11 @@ if mode == 'train':
             args['metric_to_plot'] + "_{val_" + args['metric_to_plot'] +":.3f}.h5"
     
     if args['save_model_weights'] == 'model':
-        ModelCheckpoint_file = args["checkpoints"] + temp
+        ModelCheckpoint_file = os.path.join(args["checkpoints"] , temp)
         save_weights_only = False
     
     elif args['save_model_weights'] == 'weights':
-        ModelCheckpoint_file = args['weights'] + temp
+        ModelCheckpoint_file = os.path.join(args['weights'] , temp)
         save_weights_only = True
     
     epoch_checkpoint = EpochCheckpoint(args['checkpoints'], args['weights'], args['save_model_weights'],
@@ -203,7 +207,8 @@ elif mode == 'evaluate':
                                           steps=evalGen.numImages // BS+1, max_queue_size=BS * 2, verbose=1)
 
     # Define folder where predictions will be stored
-    predictions_folder = '{}{}/'.format(args['predictions'], args['pretrained_filename'])
+    #predictions_folder = '{}{}/'.format(args['predictions'], args['pretrained_filename'])
+    predictions_folder = os.path.join(args['predictions'], args['pretrained_filename'])
     # Create folder where predictions will be stored
     cnf.check_folder_exists(predictions_folder)
     

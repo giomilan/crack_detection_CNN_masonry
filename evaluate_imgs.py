@@ -44,10 +44,14 @@ import os
 
 #os.add_dll_directory("C:\\Users\\giovanni.milan\\Documents\\cuda\\bin\\")
 folder = {}
+"""
 # Use this to easily run the code in different directories/devices
-folder['initial'] = 'C:\\Users\\Giovanni.Milan\\Documents\\'
+folder['initial'] = 'C:/Users/giovanni.milan/Documents/'
 # The path where the repository is stored
 folder['main'] = folder['initial'] + 'crack_detection_CNN_masonry/'
+"""
+
+folder['main'] = ''
 
 # if folder['main'] == '', then the current working directory will be used
 if folder['main'] == '':
@@ -80,7 +84,11 @@ from subroutines.HDF5 import HDF5DatasetGeneratorMask
 #%%
   
 
-HDF5_file = "C:\\Users\\giovanni.milan\\Documents\\crack_detection_CNN_masonry\\img_to_evaluate\\val.hdf5"  
+
+#HDF5_file = "C:\\Users\\giovanni.milan\\Documents\\crack_detection_CNN_masonry\\img_to_evaluate\\val.hdf5"  
+
+HDF5_file = os.path.join(folder['main'],"img_to_evaluate","val.hdf5")
+
 if mode == 'evaluate':
 
     # load pretrained model/weights

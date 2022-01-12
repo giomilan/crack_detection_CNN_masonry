@@ -58,7 +58,7 @@ class Config:
         # Batch size
         self.BS = 4
         # Number of epochs to train the model
-        self.epochs = 10
+        self.epochs = 3
         # Initial learning rate
         self.INIT_LR = 0.0005
         
@@ -161,19 +161,19 @@ class Config:
         # Pass the path where the repository is stored to the args
         self.args['main'] = self.working_folder
         # Where the dataset is stored
-        self.args['dataset'] = self.args['main'] + 'dataset/'
+        self.args['dataset'] = os.path.join(self.args['main'] ,'dataset')
         # A new folder will be created where any output will be stored in
-        self.args['output'] = self.args['main'] + 'output/'
+        self.args['output'] = os.path.join(self.args['main'] , 'output')
         # The dataset will be stored in HDF5 format here
-        self.args['hdf5'] = self.args['output'] + 'hdf5/'
+        self.args['hdf5'] = os.path.join(self.args['output'] , 'hdf5')
         # The saved model will be stored here
-        self.args['checkpoints'] = self.args['output'] + 'checkpoints/'
+        self.args['checkpoints'] = os.path.join(self.args['output'] , 'checkpoints')
         # The saved weights will be stored here        
-        self.args['weights'] = self.args['output'] + 'weights/'
+        self.args['weights'] = os.path.join(self.args['output'] , 'weights')
         # Theserialized model (JSON) will be stored here
-        self.args['model_json_folder'] = self.args['output'] + 'model_json/'
+        self.args['model_json_folder'] = os.path.join(self.args['output'] , 'model_json')
         # Predictions will be stored here
-        self.args['predictions'] = self.args['output'] + 'predictions/'
+        self.args['predictions'] = os.path.join(self.args['output'] , 'predictions')
         
         # Create the folders
         folders = [self.args['hdf5'], self.args['checkpoints'], self.args['weights'], 
@@ -183,17 +183,17 @@ class Config:
 
         # Save the HDF5 file to different folder according to IMAGE_DIMS
         temp = '{}_{}_{}_{}/'.format(self.info, self.IMAGE_DIMS[0],self.IMAGE_DIMS[1],self.IMAGE_DIMS[2])
-        self.check_folder_exists(self.args['hdf5'] + temp)
+        self.check_folder_exists(os.path.join(self.args['hdf5'] , temp))
         # Define the output for the train and validation HDF5 files
-        self.args['TRAIN_HDF5'] = self.args['hdf5'] + temp + 'train.hdf5'
-        self.args['VAL_HDF5'] = self.args['hdf5'] + temp + 'val.hdf5'
+        self.args['TRAIN_HDF5'] = os.path.join(self.args['hdf5'] , temp , 'train.hdf5')
+        self.args['VAL_HDF5'] = os.path.join(self.args['hdf5'] , temp , 'val.hdf5')
         # In case you need to test the model on a set other than the validation set,
         # define the EVAL_HDF5 suitably
-        self.args['EVAL_HDF5'] = self.args['hdf5'] + temp + 'val.hdf5'
+        self.args['EVAL_HDF5'] = os.path.join(self.args['hdf5'] , temp , 'val.hdf5')
             
         # Define the path that the patches of images and masks are stored
-        self.args['images'] = self.args['dataset'] + '{}_{}_images/'.format(self.info, self.IMAGE_DIMS[0])
-        self.args['masks'] = self.args['dataset'] +'{}_{}_masks/'.format(self.info, self.IMAGE_DIMS[0])
+        self.args['images'] = os.path.join(self.args['dataset'] , '{}_{}_images/'.format(self.info, self.IMAGE_DIMS[0]))
+        self.args['masks'] = os.path.join(self.args['dataset'] ,'{}_{}_masks/'.format(self.info, self.IMAGE_DIMS[0]))
     
         # Diffent configurations when mode is 'train' or evaluate'
         if self.mode == 'train':
@@ -206,7 +206,7 @@ class Config:
             # If the counter file doesn't exist, use the os.getpid() as counter
             
             # Path to the counter file
-            self.args['counter_file'] = self.args['output'] + 'counter.txt'
+            self.args['counter_file'] = os.path.join(self.args['output'] , 'counter.txt')
             
             # If 'counter.txt' exists read the counter
             if os.path.exists(self.args['counter_file']):
@@ -244,7 +244,7 @@ class Config:
             # Check if the counter value was used before
             # If it was used before ask the user whether to proceed
             # If 'n' is passed, the analysis will be terminated
-            self.args['CSV_PATH'] = self.args['output'] + '{}_{}.out'.format(self.info, self.args['counter'])
+            self.args['CSV_PATH'] = os.path.join(self.args['output'] , '{}_{}.out'.format(self.info, self.args['counter']))
             if os.path.exists(self.args['CSV_PATH']):
                 print("The counter '{}' has been used before\nShould the analysis continue [y/n]:".format(self.args['counter']))
                 check = input()
@@ -253,24 +253,25 @@ class Config:
                     sys.exit(1)
             
             # Plot Loss/Metrics during training
-            self.args['FIG_PATH'] = self.args['output'] + self.info + '_{}.png'.format(self.args['counter'])
+            self.args['FIG_PATH'] = os.path.join(self.args['output'] , self.info + '_{}.png'.format(self.args['counter']))
             # Serialize results (i.e. metrics, loss) to JSON
             # If None is given, no serialization will take place
-            self.args['JSON_PATH'] = self.args['output'] + self.info + '_{}.json'.format(self.args['counter'])
+            self.args['JSON_PATH'] = os.path.join(self.args['output'] , self.info + '_{}.json'.format(self.args['counter']))
             # Plot the architecture of the network
-            self.args['architecture'] = self.args['output'] + '{}_architecture_{}.png'.format(self.info, self.args['counter'])
+            self.args['architecture'] = os.path.join(self.args['output'] , '{}_architecture_{}.png'.format(self.info, self.args['counter']))
             # Store the summary of the model to txt file
-            self.args['summary'] = self.args['output'] + '{}_summary_{}.txt'.format(self.info,self.args['counter'])        
+            self.args['summary'] = os.path.join(self.args['output'] , '{}_summary_{}.txt'.format(self.info,self.args['counter']) )       
             
         elif self.mode == 'evaluate':
             
             # Define the counter suitably in order to read the correct JSON file etc.
-            self.args['counter'] = 393368
+            self.args['counter'] = 712992
             # Define the file with the pretrained weights or the model with weights that will be used to evaluate model
             # e.g. 'crack detection_1_epoch_7_F1_score_dil_0.762.h5'
-            self.args['pretrained_filename'] = 'crack_detection_393368_epoch_10_F1_score_dil_0.768.h5'
+            self.args['pretrained_filename'] = 'crack_detection_712992_epoch_3_F1_score_dil_0.182.h5'
             # Define the subfolder where predictions will be stored
-            self.args['predictions_subfolder'] = '{}{}/'.format(self.args['predictions'], self.args['pretrained_filename'])
+            #self.args['predictions_subfolder'] = '{}{}/'.format(self.args['predictions'], self.args['pretrained_filename'])
+            self.args['predictions_subfolder'] = os.path.join(self.args['predictions'], self.args['pretrained_filename'])
             # Define whether to dilate ground truth mask for the calculation of Precision metric
             # Background pixels predicted as cracks (FP) are considered as TP if they are a few 
             # pixels apart from the annotated cracks. Refer to the Journal paper for extra clarification                 
@@ -280,6 +281,6 @@ class Config:
         if (self.mode == 'train') or (self.mode == 'evaluate'):
             
             # The path for the serialized model to JSON
-            self.args['model_json'] = self.args['model_json_folder'] + self.info + '_{}.json'.format(self.args['counter']) 
+            self.args['model_json'] = os.path.join(self.args['model_json_folder'] , self.info + '_{}.json'.format(self.args['counter'])) 
         
         return self.args

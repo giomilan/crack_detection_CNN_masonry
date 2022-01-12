@@ -1,3 +1,4 @@
+import os
 """
 The following code was produced for the Journal paper 
 "Automatic crack classification and segmentation on masonry surfaces using convolutional neural networks and transfer learning"
@@ -57,13 +58,13 @@ class LoadModel:
         # Load pretrained DeepCrack
         if self.args["model"] == 'DeepCrack':
             
-            sys.path.append(self.args["main"] + 'networks/')
+            sys.path.append(os.path.join(self.args["main"] , 'networks'))
             from edeepcrack_cls import Deepcrack
 
             model = Deepcrack(input_shape=(self.BS, self.IMAGE_DIMS[0], self.IMAGE_DIMS[1], self.IMAGE_DIMS[2]))
 
             # load weights into new model
-            model.load_weights(self.args['weights'] + self.args['pretrained_filename'])
+            model.load_weights(os.path.join(self.args['weights'] , self.args['pretrained_filename']))
 
         # Load pretrained model
         # This option is not supported for the current version of the code for the 'evaluation' mode
@@ -80,7 +81,7 @@ class LoadModel:
             
             # If pretrained Deeplabv3 will be loaded, import the Deeplabv3 module
             if self.args["model"] == 'Deeplabv3':            
-                sys.path.append(self.args["main"] + 'networks/')
+                sys.path.append(os.path.join(self.args["main"] , 'networks'))
                 from model import Deeplabv3  
 
             # load json and create model
@@ -94,6 +95,6 @@ class LoadModel:
                 model = model_from_json(loaded_model_json)
         
             # load weights into new model
-            model.load_weights(self.args['weights'] + self.args['pretrained_filename'])
+            model.load_weights(os.path.join(self.args['weights'] , self.args['pretrained_filename']))
         
         return model

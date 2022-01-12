@@ -39,7 +39,7 @@ YouTube Channel: https://www.youtube.com/channel/UCuSdAarhISVQzV2GhxaErsg
 
 Your feedback is welcome. Feel free to reach out to explore any options for collaboration.
 """
-
+import os
 import sys
 import numpy as np
 import h5py
@@ -72,7 +72,8 @@ def Visualize_Predictions(args, predictions, threshold=0.5):
     for ii in range (0, numImages):
         
         # Filename to store plot for each image
-        plt_file = '{}{}.png'.format(args['predictions_subfolder'], ii)
+        #plt_file = '{}{}.png'.format(args['predictions_subfolder'], ii)
+        plt_file = os.path.join(args['predictions_subfolder'], str(ii)+'.png')
 
         # Ground truth
         gt = (db["labels"][ii].squeeze())*color

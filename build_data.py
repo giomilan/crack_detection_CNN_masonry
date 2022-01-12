@@ -43,10 +43,15 @@ Your feedback is welcome. Feel free to reach out to explore any options for coll
 import os
 
 folder = {}
+
+"""
 # Use this to easily run the code in different directories/devices
 folder['initial'] = 'C:/Users/giovanni.milan/Documents/'
 # The path where the repository is stored
 folder['main'] = folder['initial'] + 'crack_detection_CNN_masonry/'
+"""
+
+folder['main'] = ''
 
 # if folder['main'] == '', then the current working directory will be used
 if folder['main'] == '':

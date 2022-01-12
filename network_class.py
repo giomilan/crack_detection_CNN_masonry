@@ -39,7 +39,7 @@ YouTube Channel: https://www.youtube.com/channel/UCuSdAarhISVQzV2GhxaErsg
 
 Your feedback is welcome. Feel free to reach out to explore any options for collaboration.
 """
-
+import os
 import sys
 
 class Network:
@@ -107,7 +107,7 @@ class Network:
             # Refer to the following GitHub repository for the implementation of DeepLab 
             # https://github.com/tensorflow/models/tree/master/research/deeplab
             
-            sys.path.append(self.args["main"] + 'networks/')
+            sys.path.append(os.path.join(self.args["main"] , 'networks'))
             from model import Deeplabv3        
             
             weights='pascal_voc'
@@ -128,7 +128,7 @@ class Network:
             # Refer to the following GitHub repository for the implementation of DeepCrack 
             # https://github.com/hanshenChen/crack-detection
 
-            sys.path.append(self.args["main"] + 'networks/')
+            sys.path.append(os.path.join(self.args["main"] , 'networks'))
             from edeepcrack_cls import Deepcrack
 
             model = Deepcrack(input_shape=(self.BS, self.IMAGE_DIMS[0], self.IMAGE_DIMS[1], self.IMAGE_DIMS[2]))

@@ -45,6 +45,7 @@ import numpy as np
 import h5py
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable 
+import pandas as pd
 
 HDF5_file = "C:\\Users\\giovanni.milan\\Documents\\crack_detection_CNN_masonry\\img_to_evaluate\\val.hdf5"  
 prediction_folder="C:\\Users\\giovanni.milan\\Documents\\crack_detection_CNN_masonry\\img_to_evaluate\\prediction\\"
@@ -111,6 +112,10 @@ def visualize_imgs(args, predictions, threshold=0.5):
         ax1.imshow(im)
         # Prediction     
         prediction = ((predictions[ii].squeeze()>threshold)*1)*color 
+
+        mat = pd.DataFrame(data= prediction)
+        damage = round(mat.values.sum()/color/(len(mat)**2)*100,1)
+
         ax3.imshow(prediction, vmin=0, vmax=1, cmap='gray')
         
         # Set title for prediction

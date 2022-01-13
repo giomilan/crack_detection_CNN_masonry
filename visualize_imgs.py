@@ -116,11 +116,13 @@ def visualize_imgs(args, predictions, threshold=0.5):
         mat = pd.DataFrame(data= prediction)
         damage = round(mat.values.sum()/color/(len(mat)**2)*100,1)
 
+        max_crack_width = round(mat.sum(axis=1).values.max()/0.5,1)  ### in pixel - how to convert into mm?
+
         ax3.imshow(prediction, vmin=0, vmax=1, cmap='gray')
         
         # Set title for prediction
         ax1.set_title('Original Image', fontsize=7)  
-        ax3.set_title(plt_subtitle, fontsize=7)  
+        ax3.set_title(plt_subtitle+" -damage: "+str(damage)+" -max crack w: "+str(max_crack_width), fontsize=7)  
         
         # Remove axes
         ax1.axis('off')  

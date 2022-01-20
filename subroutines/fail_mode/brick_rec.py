@@ -5,7 +5,7 @@ import random
 im_path = "c://users//giovanni.milan//documents//crack_detection_CNN_masonry//dataset//crack_detection_224_images//a_22_4.png"
 
 #thier example
-im_path = "C://Users//Giovanni.Milan//Documents//crack_detection_CNN_masonry//dataset//size_rec//wall.jpg"
+#im_path = "C://Users//Giovanni.Milan//Documents//crack_detection_CNN_masonry//dataset//size_rec//wall.jpg"
 
 
 img = cv2.imread(im_path)

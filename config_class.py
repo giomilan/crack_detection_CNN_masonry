@@ -265,10 +265,10 @@ class Config:
         elif self.mode == 'evaluate':
             
             # Define the counter suitably in order to read the correct JSON file etc.
-            self.args['counter'] = 736180
+            self.args['counter'] = 560544
             # Define the file with the pretrained weights or the model with weights that will be used to evaluate model
             # e.g. 'crack detection_1_epoch_7_F1_score_dil_0.762.h5'
-            self.args['pretrained_filename'] = 'crack_detection_736180_epoch_10_F1_score_dil_0.728.h5'
+            self.args['pretrained_filename'] = 'crack_detection_560544_epoch_10_F1_score_dil_0.616.h5'
             # Define the subfolder where predictions will be stored
             #self.args['predictions_subfolder'] = '{}{}/'.format(self.args['predictions'], self.args['pretrained_filename'])
             self.args['predictions_subfolder'] = os.path.join(self.args['predictions'], self.args['pretrained_filename'])
